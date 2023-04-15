@@ -5,6 +5,7 @@ import (
 	"StackBlock/engine"
 	"StackBlock/lib"
 	"fmt"
+	"net/http"
 )
 
 func main() {
@@ -25,5 +26,15 @@ func main() {
 		panic(err)
 	}
 	fmt.Printf("Decrypted text: %v\n", decryptedText)
+	ServerWS()
 
+}
+
+func ServerWS() {
+	http.HandleFunc("/", WebSocketHandler)
+	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("./assets"))))
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		fmt.Println("Failed to start server: ", err)
+	}
 }

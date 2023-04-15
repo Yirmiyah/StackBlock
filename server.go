@@ -7,13 +7,19 @@ import (
 	"github.com/gorilla/websocket"
 )
 
+var upgrader = websocket.Upgrader{
+	ReadBufferSize:  1024,
+	WriteBufferSize: 1024,
+}
+
 func WebSocketHandler(w http.ResponseWriter, r *http.Request) {
 	// Upgrade initial GET request to a websocket
 	ws, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
 		log.Println(err)
 	}
-	// Make sure we close the connection when the function returns
+	// Make sure we close the connection when the functifunc reader(ws invalid type) {
+
 	defer ws.Close()
 
 	reader(ws)
