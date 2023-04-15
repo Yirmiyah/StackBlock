@@ -2,7 +2,7 @@
 socket = new WebSocket("ws://localhost:8080/ws");
 
 socket.onopen = function () {
-    socket.send("Hello World");
+    socket.send("Hello World !");
 }
 
 socket.onmessage = function (event) {
