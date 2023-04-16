@@ -1,7 +1,7 @@
 export function loadHomePage() {
     // Afficher la page d'accueil
 
-    let mainContainer = document.querySelector('.main_container');
+    let mainContainer = document.getElementById('main_container');
     mainContainer.innerHTML = `
     <section class="block_navbar">
         <div class="navbar">
@@ -10,12 +10,12 @@ export function loadHomePage() {
             </div>
             <div class="navbar_menu">
                 <ul id="menu">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="/">Home</a></li>
                     <li><a href="#">Profil</a></li>
                     <li><a href="#">Wanted</a></li>
                     <li><a href="#">Sold</a></li>
                     <li><a href="#">Logout</a></li>
-                    <li><a href="#">Login</a></li>
+                    <li><a href="/login">Login</a></li>
                 </ul>
             </div>
             <div class="navbar_user">

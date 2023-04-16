@@ -9,36 +9,82 @@
 </head>
 
 <body>
+
+    <div id="main_container">
+    </div>
+
     <script type="module">
         import { loadHomePage } from './js/index.js';
         import { loadLoginPage } from './js/login.js';
 
-        document.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', event => {
-                event.preventDefault();
-                const href = link.getAttribute('href');
-                history.pushState(null, null, href);
+
+        function changePage(){
+
+            document.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', event => {
+                    event.preventDefault();
+                    const href = link.getAttribute('href');
+                    history.pushState(null, null, href);
+                    updateContent(); // Fonction pour mettre à jour le contenu de la page
+                });
+            });
+    
+            window.addEventListener('popstate', event => {
+                history.replaceState(null, null, document.location.pathname);
                 updateContent(); // Fonction pour mettre à jour le contenu de la page
             });
-        });
-
-        window.addEventListener('popstate', event => {
-            history.replaceState(null, null, document.location.pathname);
-            updateContent(); // Fonction pour mettre à jour le contenu de la page
-        });
+        }
 
         function updateContent() {
-            const path = window.location.pathname;
+            let path = window.location.pathname;
             if (path === '/') {
                 // Afficher la page d'accueil
-                loadHomePage();
+                console.log('home');
+                // loadHomePage();
+                
+                changePage();
             } else if (path === '/login') {
                 // Afficher la page Login
+                console.log('login');
                 loadLoginPage();
-            } else {
+                changePage();
+            } else if (path === '/register') {
+                // Afficher la page resgister
+                console.log('register');
+                loadRegisterPage();
+                changePage();
+            } else if (path === '/profile') {
+                // Afficher la page profile
+                console.log('profile');
+                loadProfilePage();
+                changePage();
+
+            } else if (path === '/wanted') {
+                //afficher la page wanted
+                console.log('wanted');
+                loadWantedPage();
+                changePage();
+            } else if (path === '/offer') {
+                //afficher la page offer
+                console.log('offer');
+                loadOfferPage();
+                changePage();
+            }else if (path === '/sold') {
+                //afficher la page sold
+                console.log('sold');
+                loadSoldPage();
+                changePage();
+            }else {
                 // Afficher une page d'erreur 404
+                document.getElementById('main_container').innerHTML = `
+                    <h1>Page not found</h1>
+                    <p>Sorry, we couldn't find the page you were looking for.</p>
+                `;
+                console.log('Page not found');
+                changePage();
             }
         }
+        updateContent();
 
     </script>
 </body>

@@ -1,6 +1,6 @@
 export function loadLoginPage(){
     //afficher la page login
-    let mainContainer = document.querySelector('.main_container');
+    let mainContainer = document.getElementById('main_container');
     mainContainer.innerHTML = `
     <section class="blockCentral" id="userSectionCode">
     
@@ -13,5 +13,7 @@ export function loadLoginPage(){
     
         </section>
         `;
+        
+        
 }
 
